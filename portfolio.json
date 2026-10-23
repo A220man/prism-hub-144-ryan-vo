@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "name": "prism-hub-144-ryan-vo",
+  "owner": "A220man",
+  "email": "ryandtvo@gmail.com",
+  "domain": "AI/ML developer tools",
+  "summary": "Work in progress: prism-hub-144-ryan-vo",
+  "workflows": [
+    "Create, search, filter, import, and export jailbreak prompts per model with default prompt targeting",
+    "Run deterministic offline evaluation against curated test dataset without LLM API keys",
+    "Configure and use multiple LLM providers (OpenAI, Anthropic, Gemini, Ollama) for live evaluation"
+  ],
+  "auth": "oidc-keycloak-saml-broker",
+  "llm_providers": [
+    "openai-compatible",
+    "anthropic",
+    "gemini",
+    "ollama"
+  ],
+  "status": "work-in-progress"
+}

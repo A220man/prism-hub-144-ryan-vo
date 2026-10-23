@@ -1,0 +1,54 @@
+# .gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+*.db
+*.sqlite
+
+# Node
+node_modules/
+dist/
+build/
+*.local
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Agent metadata
+.antigravitycli/
+.omp/
+
+# Docker
+.docker/
+
+# Logs
+*.log
+
+# Test coverage
+coverage/
+
+# Distribution
+*.egg-info/
+dist/
