@@ -1,8 +1,19 @@
 # Changelog
 
+## 1.2.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
 ## 1.1.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
+
+### Fixed
+- Fixed Pydantic `protected_namespaces` warnings in schema classes
+- Renamed `TestCase` to `EvalTestCase` to avoid pytest collection warning
+- Fixed `OllamaAdapter` to use native Ollama API format
+- Fixed `AnthropicAdapter` test to expect full model name from API
+- Fixed demo mode JWT validation to allow "none" algorithm for test tokens
 
 ## 1.0.0 — work-in-progress checkpoint
 

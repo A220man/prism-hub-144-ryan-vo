@@ -10,6 +10,8 @@ class PromptBase(BaseModel):
     is_default: bool = False
     tags: str = ""
 
+    model_config = ConfigDict(protected_namespaces=())
+
 
 class PromptCreate(PromptBase):
     pass
@@ -21,13 +23,15 @@ class PromptUpdate(BaseModel):
     is_default: Optional[bool] = None
     tags: Optional[str] = None
 
+    model_config = ConfigDict(protected_namespaces=())
+
 
 class PromptResponse(PromptBase):
     id: int
     created_at: datetime
     updated_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True, protected_namespaces=())
 
 
 class PromptListResponse(BaseModel):
@@ -36,3 +40,5 @@ class PromptListResponse(BaseModel):
     page: int
     page_size: int
     total_pages: int
+
+    model_config = ConfigDict(protected_namespaces=())

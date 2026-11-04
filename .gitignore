@@ -52,3 +52,15 @@ coverage/
 # Distribution
 *.egg-info/
 dist/
+.turbo/
+.env.local
+.env.*.local
+**/data/media/
+*.pyc
+*.db-wal
+*.db-shm
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm

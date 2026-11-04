@@ -71,7 +71,7 @@ def validate_token(token: str) -> TokenData:
     if settings.DEMO_MODE:
         # Demo mode: accept any token with valid structure
         try:
-            payload = jwt.decode(token, key="", options={"verify_signature": False})
+            payload = jwt.decode(token, key="", options={"verify_signature": False}, algorithms=["none", "RS256"])
             return TokenData(
                 sub=payload.get("sub", "demo-user"),
                 email=payload.get("email"),
