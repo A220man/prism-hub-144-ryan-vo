@@ -1,8 +1,22 @@
 # Changelog
 
+## 1.3.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
 ## 1.2.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
+
+### Added
+- Jailbreak prompt engine with per-model prompt swapping
+- Default jailbreak prompt seeded for Chinese model "小码辣" (xiaoma-la) on database initialization
+- `/api/prompts/default/{model_name}` endpoint for retrieving default prompts
+- Database seeding for default prompts in `backend/app/core/database.py`
+
+### Fixed
+- Fixed database initialization to import models before creating tables
+- Fixed circular import between database and models modules
 
 ## 1.1.0 — work-in-progress checkpoint
 

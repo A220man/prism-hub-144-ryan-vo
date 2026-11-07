@@ -4,7 +4,7 @@ Each round completes one feature or repair. Future items are planned, not implem
 
 ## Current round
 
-core-skeleton
+jailbreak-engine
 
 ## Roadmap
 
@@ -26,13 +26,17 @@ Tests: `backend/tests/test_health.py`, `backend/tests/test_prompts.py`, `backend
 
 ### jailbreak-engine — Jailbreak prompt engine with per-model prompt swapping
 
-Status: planned
+Status: done
 
 Acceptance:
 - Store and retrieve jailbreak prompts per model
 - Default prompt targets Chinese model '小码辣'
 - LLM adapter supports OpenAI-compatible, Anthropic, Gemini, Ollama
 - Deterministic offline core works without LLM key
+
+Implementation: `backend/app/models/prompt.py`, `backend/app/api/prompts.py`, `backend/app/services/prompt_service.py`, `backend/app/core/database.py`, `backend/app/llm_adapters.py`, `backend/app/evaluate.py`
+
+Tests: `backend/tests/test_prompts.py`, `backend/tests/test_llm_adapters.py`
 
 ### prompt-management — Prompt management UI with create/import/search/export
 

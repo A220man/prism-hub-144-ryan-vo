@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current_feature": "core-skeleton",
+  "current_feature": "jailbreak-engine",
   "features": [
     {
       "id": "core-skeleton",
@@ -55,15 +55,25 @@
     {
       "id": "jailbreak-engine",
       "title": "Jailbreak prompt engine with per-model prompt swapping",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Store and retrieve jailbreak prompts per model",
         "Default prompt targets Chinese model '小码辣'",
         "LLM adapter supports OpenAI-compatible, Anthropic, Gemini, Ollama",
         "Deterministic offline core works without LLM key"
       ],
-      "implementation": [],
-      "tests": []
+      "implementation": [
+        "backend/app/models/prompt.py",
+        "backend/app/api/prompts.py",
+        "backend/app/services/prompt_service.py",
+        "backend/app/core/database.py",
+        "backend/app/llm_adapters.py",
+        "backend/app/evaluate.py"
+      ],
+      "tests": [
+        "backend/tests/test_prompts.py",
+        "backend/tests/test_llm_adapters.py"
+      ]
     },
     {
       "id": "prompt-management",
