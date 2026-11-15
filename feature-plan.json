@@ -78,7 +78,7 @@
     {
       "id": "prompt-management",
       "title": "Prompt management UI with create/import/search/export",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Dashboard lists prompts with pagination/filtering",
         "Create new prompt with model association",
