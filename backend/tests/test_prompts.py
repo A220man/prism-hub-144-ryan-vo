@@ -219,3 +219,62 @@ async def test_unauthorized_without_token():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
         response = await client.get("/api/prompts")
         assert response.status_code == 401
+
+@pytest.mark.asyncio
+async def test_list_prompts_by_search_tag(auth_headers_admin):
+    """Test listing prompts filtered by tag via search parameter."""
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        # Create a prompt with specific tags
+        prompt_data = {
+            "model_name": "search-tag-model",
+            "prompt_text": "A prompt for search tag testing",
+            "is_default": False,
+            "tags": "urgent,triage",
+        }
+        create_resp = await client.post(
+            "/api/prompts",
+            json=prompt_data,
+            headers=auth_headers_admin,
+        )
+        assert create_resp.status_code == 201
+        created = create_resp.json()
+        assert created["tags"] == "urgent,triage"
+
+        # List prompts filtered by "urgent" tag via search
+        list_resp = await client.get(
+            "/api/prompts?search=urgent",
+            headers=auth_headers_admin,
+        )
+        assert list_resp.status_code == 200
+        data = list_resp.json()
+        assert data["total"] >= 1
+        # Find our created prompt
+        our_prompt = next((p for p in data["items"] if p["id"] == created["id"]), None)
+        assert our_prompt is not None
+        assert "urgent" in our_prompt["tags"]
+
+        # List prompts filtered by "triage" tag via search
+        list_resp2 = await client.get(
+            "/api/prompts?search=triage",
+            headers=auth_headers_admin,
+        )
+        assert list_resp2.status_code == 200
+        data2 = list_resp2.json()
+        assert data2["total"] >= 1
+        our_prompt2 = next(
+            (p for p in data2["items"] if p["id"] == created["id"]), None
+        )
+        assert our_prompt2 is not None
+        assert "triage" in our_prompt2["tags"]
+
+        # List prompts with a non-matching search term (should not include our prompt)
+        list_resp3 = await client.get(
+            "/api/prompts?search=nonexistent",
+            headers=auth_headers_admin,
+        )
+        assert list_resp3.status_code == 200
+        data3 = list_resp3.json()
+        our_prompt3 = next(
+            (p for p in data3["items"] if p["id"] == created["id"]), None
+        )
+        assert our_prompt3 is None

@@ -40,7 +40,7 @@ Tests: `backend/tests/test_prompts.py`, `backend/tests/test_llm_adapters.py`
 
 ### prompt-management — Prompt management UI with create/import/search/export
 
-Status: planned
+Status: done
 
 Acceptance:
 - Dashboard lists prompts with pagination/filtering
