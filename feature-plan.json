@@ -58,7 +58,7 @@
       "status": "done",
       "acceptance": [
         "Store and retrieve jailbreak prompts per model",
-        "Default prompt targets Chinese model '小码辣'",
+        "Default prompt targets Chinese model '\u5c0f\u7801\u8fa3'",
         "LLM adapter supports OpenAI-compatible, Anthropic, Gemini, Ollama",
         "Deterministic offline core works without LLM key"
       ],
@@ -92,15 +92,19 @@
     {
       "id": "evaluation-workflow",
       "title": "AI/ML evaluation workflow with baseline metrics",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Run evaluation against test dataset",
         "Measure jailbreak success rate",
         "Report baseline and failure cases",
         "Reproducible evaluation command"
       ],
-      "implementation": [],
-      "tests": []
+      "implementation": [
+        "backend/app/api/prompts.py:run_evaluation_endpoint"
+      ],
+      "tests": [
+        "test_evaluation_endpoint.py"
+      ]
     }
   ]
 }
