@@ -51,11 +51,15 @@ Acceptance:
 
 ### evaluation-workflow — AI/ML evaluation workflow with baseline metrics
 
-Status: planned
+Status: done
 
 Acceptance:
 - Run evaluation against test dataset
 - Measure jailbreak success rate
 - Report baseline and failure cases
 - Reproducible evaluation command
+
+Implementation: `backend/app/api/prompts.py:run_evaluation_endpoint`
+
+Tests: `test_evaluation_endpoint.py`
 

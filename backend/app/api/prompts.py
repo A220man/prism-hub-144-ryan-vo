@@ -22,6 +22,17 @@ from backend.app.api.schemas import (
     PromptListResponse,
 )
 
+from backend.app.evaluate import (
+    evaluate_offline,
+    run_evaluation,
+    DEFAULT_TEST_CASES,
+    EvalTestCase,
+    EvaluationResult,
+    EvaluationSummary,
+    load_test_cases_from_json,
+    save_results_json,
+)
+
 
 router = APIRouter(prefix="/api/prompts", tags=["prompts"])
 
@@ -164,3 +175,22 @@ async def export_prompts_endpoint(
 
     prompts = await export_prompts(db, model_name)
     return [PromptResponse.model_validate(p) for p in prompts]
+
+@router.get("/evaluate", response_model=EvaluationSummary)
+async def run_evaluation_endpoint(
+    model_filter: Optional[str] = Query(None, description="Filter by model name"),
+    db: AsyncSession = Depends(get_db),
+    current_user: TokenData = Depends(get_current_user),
+):
+    """Run evaluation against test dataset.
+
+    Runs the deterministic offline evaluation on the default test dataset,
+    optionally filtered by model. Returns an EvaluationSummary with jailbreak
+    success rates and baseline metrics.
+    """
+    if not require_role(current_user, ["admin", "operator", "analyst"]):
+        raise HTTPException(status_code=status.HTTP_403, detail="Insufficient permissions")
+
+    results, summary = run_evaluation(model_filter=model_filter)
+    return summary
+
